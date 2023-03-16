@@ -1,7 +1,5 @@
 // * event lstener click ketika di tekan maka logic
 
-const { read } = require("@popperjs/core");
-const { render } = require("sass");
 
 $(document).on('click', '.deleteSiswa', function(e) {
     var id = $(this).attr('data-id');

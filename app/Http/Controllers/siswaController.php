@@ -46,16 +46,16 @@ class siswaController extends Controller
         $siswas->kelas = $request->kelas;
         $siswas->angkatan = $request->angkatan;
         $siswas->alamat = $request->alamat;
-        // ! Using native controller
+        // ! Using native controller to upload file
         $path = 'uploads/';
         // * kondisi ketika file diupload
         if(File::isDirectory($path)){
-            $file = $request->file($path);
+            $file = $request->file('photo');
             $fileName = $file->getClientOriginalName();
             // * memindahkan file ke direktori uploads dan format nama file
             $file->move($path, $fileName);
             // * menyimpan nama file ke database
-            $siswas->foto = $fileName;
+            $siswas->photo = $fileName;
         }
         $siswas->save();
 
@@ -101,6 +101,20 @@ class siswaController extends Controller
        $siswas->kelas = $request->kelas;
        $siswas->angkatan = $request->angkatan;
        $siswas->alamat = $request->alamat;
+        // ! Using native controller
+        $path = 'uploads/';
+        // * kondisi ketika file diupload
+        if(!$request->hasFile('photo')){
+            $siswas->photo = $siswas->photo;
+        }elseif (File::isDirectory($path)){
+            $file = $request->file('photo');
+            $fileName = $file->getClientOriginalName();
+            // * memindahkan file ke direktori uploads dan format nama file
+            $file->move($path, $fileName);
+            // * menyimpan nama file ke database
+            $siswas->photo = $fileName;
+        }
+       
        $siswas->save();
 
        if($siswas){

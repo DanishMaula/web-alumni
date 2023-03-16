@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .images-default {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 8px; 
-    }
-</style>
+    <style>
+        .images-default {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 8px;
+        }
+
+        .photo-siswa {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 8px;
+        }
+    </style>
 
     <!-- Button trigger modal -->
     <div class="container">
@@ -50,7 +56,7 @@
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Create Siswa</h1>
                                     </div>
-                                    <form method="post" action="{{ route('siswa.store') }}" enctype="multipart.form-data">
+                                    <form method="post" action="{{ route('siswa.store') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="row">
@@ -159,23 +165,24 @@
                                                 <div class="form-group">
                                                     <div>
                                                         <label for="formFileLg" class="form-label">Photo</label>
-                                                    </br>
-                                                        <img id="imgPreview" src="{{ asset('img/avatar.jpeg')}}" class="images-default" >
-                                                        
-                                                        <input name="photo" class="form-control uploads" id="formFileLg" type="file" onchange="previewFile(this);">
-                                                      </div>
-                                                   
+                                                        </br>
+                                                        <img id="imgPreview" src="{{ asset('img/avatar.jpeg') }}"
+                                                            class="images-default">
+
+                                                        <input name="photo" class="form-control uploads" id="formFileLg"
+                                                            type="file">
+                                                    </div>
+
                                                     @error('alamat')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                 </div>
-                                                
+
 
                                                 <div class="form-group">
                                                     <label>Alamat</label>
-                                                    <textarea cols="20" rows="5"
-                                                        class="form-control @error('alamat') is-invalid @enderror"
-                                                        name="alamat" placeholder="Please insert alamat" required>
+                                                    <textarea cols="20" rows="5" class="form-control @error('alamat') is-invalid @enderror" name="alamat"
+                                                        placeholder="Please insert alamat" required>
                                                     </textarea>
                                                     @error('alamat')
                                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -187,19 +194,19 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" class="btn btn-primary">Create</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <br> </br>
-                        <div class="container-fluid">
-
-                            <table class="table">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        <th scope="col">Photo</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Kelas</th>
                                         <th scope="col">Jurusan</th>
@@ -213,6 +220,11 @@
                                     @foreach ($siswa as $item)
                                         <tr>
                                             <th scope="row">{{ $loop->index + 1 }}</th>
+                                            <td>
+                                                <img class="photo-siswa"
+                                                    src="{{ $item->photo == null ? asset('img/avatar.jpeg') : asset('uploads/' . $item->photo) }}"
+                                                    alt="photo">
+                                            </td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->kelas }}</td>
                                             <td>{{ $item->jurusan }}</td>
@@ -220,17 +232,32 @@
 
                                             <td class="text-center">
 
-                                                <button data-name="{{ $item->name }}" data-id="{{ $item->id }}"
-                                                    class="btn btn-danger btn-small deleteSiswa">Delete</button>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><button data-name="{{ $item->name }}"
+                                                                data-id="{{ $item->id }}"
+                                                                class="dropdown-item deleteSiswa">Delete</button>
+                                                        </li>
+                                                        <li><button 
+                                                                data-bs-target="#modalEdit_{{ $item->id }}"
+                                                                data-bs-toggle="modal"
+                                                                class="dropdown-item ">Edit</button></li>
+                                                    </ul>
+                                                </div>
 
-                                                <br> </br>
 
-                                                <button type="button" data-bs-target="#modalEdit_{{ $item->id }}"
-                                                    data-bs-toggle="modal" class="btn btn-info btn-small ">Edit</button>
+
+
+
 
                                             </td>
 
                                         </tr>
+                                        
                                         {{-- edit and update --}}
 
                                         <div class="modal fade" id="modalEdit_{{ $item->id }}" tabindex="-1"
@@ -244,7 +271,8 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" action="{{ route('siswa.update', $item->id) }}">
+                                                        <form method="post"
+                                                            action="{{ route('siswa.update', $item->id) }}" enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="row">
@@ -364,6 +392,23 @@
                                                                     </div>
 
                                                                 </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <div>
+                                                                        <label for="formFileLg" class="form-label">Photo</label>
+                                                                        </br>
+                                                                        <img id="imgPreview" src="{{ asset('img/avatar.jpeg') }}"
+                                                                            class="images-default">
+                
+                                                                        <input  name="photo" class="form-control uploads" id="formFileLg"
+                                                                            type="file">
+                                                                    </div>
+                
+                                                                    @error('photo')
+                                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
+
 
                                                                 <div class="form-group">
                                                                     <label>Alamat</label>
@@ -380,8 +425,7 @@
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
+                                                               
                                                                 <button type="submit" class="btn btn-primary">Save
                                                                     changes</button>
                                                             </div>
@@ -408,5 +452,4 @@
         </div>
     </div>
     @include('layouts.js')
-
 @endsection
