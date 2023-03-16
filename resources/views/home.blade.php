@@ -16,12 +16,12 @@
                         @endif
 
                         <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ route('siswa.index') }}">Go To Siswa</a>
+                            <div class="row gy-4" >
+                                <div class="col-md-4">
+                                    <a class="siswa-btn" href="{{ route('siswa.index') }}">Go To Siswa</a>
                                     </div>
                                     <a href="{{ route('article') }}">Go To Article</a>
-                                </div>
+                            </div>
                                 
 
 

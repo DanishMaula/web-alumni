@@ -52,3 +52,14 @@
     clear: both;
     display: table;
   }
+
+  @keyframes circle-in-center {
+    from {
+      clip-path: circle(0%);
+    }
+    to {
+      clip-path: circle(125%);
+    }
+  }
+  
+  

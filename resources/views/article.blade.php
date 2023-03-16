@@ -19,63 +19,65 @@
  
   
   </div> --}}
-
-<div class="row gy-5 mx-5 justify-content-center" >
-  <div class="col-md-4">
-    <div class="card">
-      <img src="img_avatar.png" alt="Avatar" style="width:100%">
-      <div class="container">
-        <h4><b>John Doe</b></h4> 
-        <p>Architect & Engineer</p> 
+<div class="container">
+  <div class="row gy-5 mx-5 justify-content-center text-center" >
+    <div class="col-md-4">
+      <div class="card">
+        <img src="img_avatar.png" alt="photo" style="width:100%">
+        <div class="container">
+          <h4><b>John Doe</b></h4> 
+          <p>Architect & Engineer</p> 
+        </div>
       </div>
+      
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>John Doe</b></h4> 
+          <p>Architect & Engineer</p> 
+        </div>
+      </div>
+      
+      
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>John Doe</b></h4> 
+          <p>Architect & Engineer</p> 
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>John Doe</b></h4> 
+          <p>Architect & Engineer</p> 
+        </div>
+      </div>
+      
+      
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>John Doe</b></h4> 
+          <p>Architect & Engineer</p> 
+        </div>
+      </div>
+      
+      
     </div>
     
   </div>
-  <div class="col-md-4">
-    <div class="card">
-      <img src="img_avatar.png" alt="Avatar" style="width:100%">
-      <div class="container">
-        <h4><b>John Doe</b></h4> 
-        <p>Architect & Engineer</p> 
-      </div>
-    </div>
-    
-    
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-      <img src="img_avatar.png" alt="Avatar" style="width:100%">
-      <div class="container">
-        <h4><b>John Doe</b></h4> 
-        <p>Architect & Engineer</p> 
-      </div>
-    </div>
-    
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-      <img src="img_avatar.png" alt="Avatar" style="width:100%">
-      <div class="container">
-        <h4><b>John Doe</b></h4> 
-        <p>Architect & Engineer</p> 
-      </div>
-    </div>
-    
-    
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-      <img src="img_avatar.png" alt="Avatar" style="width:100%">
-      <div class="container">
-        <h4><b>John Doe</b></h4> 
-        <p>Architect & Engineer</p> 
-      </div>
-    </div>
-    
-    
-  </div>
-  
 </div>
+
 
   
 

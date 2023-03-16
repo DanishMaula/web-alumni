@@ -1,9 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Button trigger modal -->
+<style>
+    .images-default {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 8px; 
+    }
+</style>
 
+    <!-- Button trigger modal -->
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -42,7 +50,7 @@
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Create Siswa</h1>
                                     </div>
-                                    <form method="post" action="{{ route('siswa.store') }}">
+                                    <form method="post" action="{{ route('siswa.store') }}" enctype="multipart.form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="row">
@@ -149,10 +157,26 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <div>
+                                                        <label for="formFileLg" class="form-label">Photo</label>
+                                                    </br>
+                                                        <img id="imgPreview" src="{{ asset('img/avatar.jpeg')}}" class="images-default" >
+                                                        
+                                                        <input name="photo" class="form-control uploads" id="formFileLg" type="file" onchange="previewFile(this);">
+                                                      </div>
+                                                   
+                                                    @error('alamat')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                
+
+                                                <div class="form-group">
                                                     <label>Alamat</label>
-                                                    <input type="text"
+                                                    <textarea cols="20" rows="5"
                                                         class="form-control @error('alamat') is-invalid @enderror"
                                                         name="alamat" placeholder="Please insert alamat" required>
+                                                    </textarea>
                                                     @error('alamat')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -383,4 +407,6 @@
             </div>
         </div>
     </div>
+    @include('layouts.js')
+
 @endsection

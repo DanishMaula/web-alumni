@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\siswas;
 use App\Models\jenis_kelamin;
-
+use Illuminate\Support\Facades\Storage;
+use Nette\Utils\Image;
+use Illuminate\Support\Facades\File;
 
 class siswaController extends Controller
 {
     public function index()
     {
         return view('siswa',  [
-            'siswa' => siswas::paginate(10),
+            'siswa' => siswas::orderBy('id', 'desc')->paginate(10),
             'genders' => jenis_kelamin::all(),
         ]);
     }
@@ -44,6 +46,17 @@ class siswaController extends Controller
         $siswas->kelas = $request->kelas;
         $siswas->angkatan = $request->angkatan;
         $siswas->alamat = $request->alamat;
+        // ! Using native controller
+        $path = 'uploads/';
+        // * kondisi ketika file diupload
+        if(File::isDirectory($path)){
+            $file = $request->file($path);
+            $fileName = $file->getClientOriginalName();
+            // * memindahkan file ke direktori uploads dan format nama file
+            $file->move($path, $fileName);
+            // * menyimpan nama file ke database
+            $siswas->foto = $fileName;
+        }
         $siswas->save();
 
         if($siswas){
@@ -88,7 +101,6 @@ class siswaController extends Controller
        $siswas->kelas = $request->kelas;
        $siswas->angkatan = $request->angkatan;
        $siswas->alamat = $request->alamat;
-
        $siswas->save();
 
        if($siswas){
